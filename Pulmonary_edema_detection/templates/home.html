@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% block content %}
+<script>
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(500)
+                        .height(500);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
+<style>
+    body {
+        height: 100vh;
+        margin: 0;
+        background-image: url('https://img.freepik.com/free-photo/pastel-blue-vignette-concrete-textured-background_53876-102637.jpg');
+        background-size: cover; 
+        background-attachment: fixed;
+
+    }
+</style>
+{% if message %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+<div class="row"   style="margin-bottom: 300px;">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <center><h1>Pulmonary Edema Detection</h1></center>
+        <br>
+        <div class="card card-body">
+            <center><h3>Please upload the X-Ray-scan image of Lungs</h3></center>
+            
+            <form class="form-horizontal" action="{{ url_for('pulmonarypredictPage') }}" method="POST" enctype="multipart/form-data">
+                <img style="display: block; margin: auto;" src="{{ url_for('static', filename='images/011.jpg') }}" height="300">
+                
+                <center>
+                <input onchange="readURL(this);" type="file" name="image" placeholder="Upload Image">
+                <br>
+                <br>
+                <img  id="blah" />
+                <br>
+                <br>
+                <input class="btn btn-info" type="submit">
+                </center>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+{% endblock %}

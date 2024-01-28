@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+    body {
+        height: 100vh;
+        margin: 0;
+        background-image: url('https://img.freepik.com/free-photo/pastel-blue-vignette-concrete-textured-background_53876-102637.jpg');
+        background-size: cover; 
+    }
+
+</style>
+    <div class="row"  style="margin-bottom: 477px;">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% if pred == 1 %}
+                <div class="card card-body alert alert-danger"><center>This X-Ray-scan image is predicted to <b>have pulmonary function edema and cardiogenic possibility is high, </b>  Please Consult Doctor.</center></div>
+                <img style="display: block; margin: auto;" src="{{ url_for('static', filename='images/022.png') }}" height="300">s
+                {% else %}
+                <div class="card card-body alert alert-success"><center>This X-Ray-scan image <b> does not have any Disease <br>    </center></b></div>
+                <img style="display: block; margin: auto;" src="{{ url_for('static', filename='images/033.png') }}" height="300">
+                {% endif %}
+                <br>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"><a href="{{ url_for('home') }}" class="btn btn-block btn-primary">Back to Home</a></div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+{% endblock %}
